@@ -20,8 +20,8 @@
 
                                 {{-- Tipo field --}}
                                 <div class="input-group mb-3">
-                                    <select class="custom-select {{ $errors->has('name') ? 'is-invalid' : '' }} " id="inputGroupSelect02" name="tipo" autofocus>
-                                      <option selected>Sou: </option>
+                                    <select class="custom-select {{ $errors->has('name') ? 'is-invalid' : '' }} " id="inputGroupSelect02" name="tipo" autofocus required>
+                                      <option value="" disabled selected hidden>Sou: </option>
                                       <option value="1">Médico</option>
                                       <option value="2">Paciente</option>
                                     </select>
@@ -49,12 +49,12 @@
                                 {{-- Data --}}
 
                                 <div class="input-group mb-3">
-                                    <input type="date" name="data" class="form-control {{ $errors->has('data') ? 'is-invalid' : '' }}"
-                                        value="{{ old('data') }}" style="color: lightslategray; border:1px solid #ced4da; padding-right: 9px;"
+                                    <input type="date" name="dataDeNascimento" class="form-control {{ $errors->has('dataDeNascimento') ? 'is-invalid' : '' }}"
+                                        value="{{ old('dataDeNascimento') }}" style="color: lightslategray; border:1px solid #ced4da; padding-right: 9px;"
                                         autofocus>
-                                    @if ($errors->has('data'))
+                                    @if ($errors->has('dataDeNascimento'))
                                         <div class="invalid-feedback">
-                                            <strong>{{ $errors->first('data') }}</strong>
+                                            <strong>{{ $errors->first('dataDeNascimento') }}</strong>
                                         </div>
                                     @endif
 

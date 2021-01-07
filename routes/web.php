@@ -25,6 +25,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Auth::routes();
+
+// Route::get('/teste', 'Auth\RegisterController@index');
+
 Auth::routes();
 
 Route::get('/home', function () {

@@ -17,15 +17,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Matheus Cabral',
-            'email' => 'matheus@gmail.com',
-            'data' => '1995-09-22',
-            'tipo' => '3',
-            'password' => Hash::make('laravel123')
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Matheus Cabral',
+        //     'email' => 'matheus@gmail.com',
+        //     // 'data' => '1995-09-22',
+        //     // 'tipo' => '3',
+        //     'password' => Hash::make('laravel123')
+        // ]);
 
-        factory(\App\User::class, 15)->create();
+        factory(\App\User::class, 14)->create();
+        factory(\App\Paciente::class, 7)->create();
+        factory(\App\Medico::class, 7)->create();
 
     }
 }

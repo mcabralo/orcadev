@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Paciente;
+use App\Medico;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,7 +57,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'data' => ['required', 'date'],
+            'dataDeNascimento' => ['required', 'date'],
             'tipo' => ['required']
         ]);
     }
@@ -66,12 +70,50 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $userId = DB::table('users')->latest('created_at')->first();
+        // dd((string)$userId->id);
+        $usuarioId = $userId->id + 1;
+        // dd((string)$pacienteId, $userId);
+        // dd((string)$pacienteId);
+        // dd($userId);
+        // $pacienteId = (int)$userId->id+1;
+        // dd($pacienteId);
+        // dd((int)$userId->id+1);
+        // $pacienteId = ($userId+1);
+        // dd($pacienteId);
+
+        // dd($data);
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'data' => $data['data'],
-            'tipo' => $data['tipo']
+            // 'data' => $data['data']
+            // 'tipo' => $data['tipo']
         ]);
+
+        if ($data['tipo'] == 2) {
+            $paciente = Paciente::create([
+                'pacienteId' => (string)$usuarioId,
+                'dataDeNascimento' => $data['dataDeNascimento'],
+                'tipo' => $data['tipo']
+            ]);
+        } else if ($data['tipo'] == 1) {
+            $medico = Medico::create([
+                'medicoId' => (string)$usuarioId,
+                'dataDeNascimento' => $data['dataDeNascimento'],
+                'tipo' => $data['tipo']
+            ]);
+        };
+
+
+        return $user;
     }
+
+    // public function index() {
+    //     // $users = User::latest()->first();
+
+
+    //     // return view('user');
+    // }
 }
