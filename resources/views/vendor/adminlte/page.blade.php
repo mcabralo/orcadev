@@ -1,5 +1,6 @@
 @extends('adminlte::master')
 
+
 @inject('layoutHelper', \JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper)
 
 @if($layoutHelper->isLayoutTopnavEnabled())

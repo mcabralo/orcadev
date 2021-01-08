@@ -6,9 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agendamento extends Model
 {
-    public function agendamentos() {
+    protected $fillable = [
+        'data', 'horaInicio', 'horaTermino', 'pacId', 'medId'
+    ];
 
-        //return $this->belongsTo(User::class);
+    public function medico() {
+
+        return $this->belongsTo(Medico::class);
+    }
+
+    public function paciente() {
+
+        return $this->belongsTo(Paciente::class);
     }
 
 

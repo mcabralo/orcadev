@@ -1,12 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
-
-
 
 class UserSeeder extends Seeder
 {
@@ -28,6 +22,7 @@ class UserSeeder extends Seeder
         factory(\App\User::class, 14)->create();
         factory(\App\Paciente::class, 7)->create();
         factory(\App\Medico::class, 7)->create();
+        factory(\App\Agendamento::class, 30)->create();
 
     }
 }

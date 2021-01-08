@@ -14,20 +14,14 @@ class CreateAgendamentosTable extends Migration
     public function up()
     {
         Schema::create('agendamentos', function (Blueprint $table) {
+            
             $table->id();
             $table->timestamps();
             $table->date('data');
             $table->timestamp('horaInicio');
             $table->timestamp('horaTermino');
-            $table->integer('medicoId');
-            $table->integer('pacienteId');
-
-            $table->foreign('medicoId')
-            ->references('id')
-            ->on('medico');
-            $table->foreign('pacienteId')
-            ->references('id')
-            ->on('paciente');
+            $table->integer('medId')->unsigned();
+            $table->integer('pacId')->unsigned();
         });
     }
 

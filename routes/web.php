@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +26,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Auth::routes();
-
-// Route::get('/teste', 'Auth\RegisterController@index');
-
 Auth::routes();
+
+Route::get('/agendamento/index', 'AgendamentoController@index')->name('agendamento');
 
 Route::get('/home', function () {
     return view('home');
