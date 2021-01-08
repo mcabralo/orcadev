@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Agendamento::class, function (Faker $faker) {
     return [
-        'data' => $faker ->date('y-d-m'),
+        'data' => $faker ->dateTimeBetween('-1 year','+1 year')->format('Y-m-d'),
         'horaInicio' => $faker->time(),
         'horaTermino' => $faker->time(),
         'medId' => $faker->numberBetween(1,7),

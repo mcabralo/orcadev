@@ -18,52 +18,38 @@
         <!-- /.card-header -->
         <div class="card-body">
             <ul class="list-group">
-                {{-- @foreach ($agendamentos as $agendamento)
-                    --}}
-                    {{-- <div class="container">
-                        <div class="row">
-                            <div class="col-6 col-sm-3">
-                                {{ $agendamento->data }}
-                            </div>
-                            <div class="col-3 col-sm-3">
-                                {{ $agendamento->horaInicio }}
-                            </div>
-                            <div class="col-3 col-sm-3">
-                                {{ $agendamento->horaTermino }}
-                            </div>
-                            <div class="col-12 col-sm-3">
-                                {{ $agendamento->medId }}
-                            </div>
-                        </div>
-                    </div> --}}
-                    <div class="conteiner">
-                        <div class="row">
-                            <table class="table table-hover table-sm">
-                                <thead>
+                <div class="conteiner">
+                    <div class="row">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">N</th>
+                                    <th scope="col">Data da Consulta</th>
+                                    <th scope="col">Hora de Início</th>
+                                    <th scope="col">Hora Esperada de Término</th>
+                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Estado</th>
+                                </tr>
+                            </thead>
+                            @foreach ($agendamentos as $agendamento)
+                                <tbody>
                                     <tr>
-                                        <th scope="col">N</th>
-                                        <th scope="col">Data da Consulta</th>
-                                        <th scope="col">Hora de Início</th>
-                                        <th scope="col">Hora Esperada de Término</th>
-                                        <th scope="col">Paciente</th>
+                                        <th scope="row"> {{ $loop->iteration }} </th>
+                                        <td scope="col">{{ $agendamento->data }}</td>
+                                        <td scope="col">{{ $agendamento->horaInicio }}</td>
+                                        <td scope="col">{{ $agendamento->horaTermino }}</td>
+                                        <td scope="col">{{ $agendamento->name }}</td>
+                                        @if ($agendamento->data < Carbon\Carbon::now())
+                                            <td scope="col">Realizada</td>
+                                        @else
+                                            <td scope="col">Marcada</td>
+                                        @endif
                                     </tr>
-                                </thead>
-
-                                @foreach ($agendamentos as $agendamento)
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"> {{ $loop->iteration }} </th>
-                                            <td scope="col">{{ $agendamento->data }}</td>
-                                            <td scope="col">{{ $agendamento->horaInicio }}</td>
-                                            <td scope="col">{{ $agendamento->horaTermino }}</td>
-                                            <td scope="col">{{ $agendamento->name }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                @endforeach
-                            </table>
-                        </div>
+                                </tbody>
+                            @endforeach
+                        </table>
                     </div>
+                </div>
 
 
             </ul>

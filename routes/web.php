@@ -15,21 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AgendamentoController@index')->name('agendamento');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/agendamento/index', 'AgendamentoController@index')->name('agendamento');
+// Route::get('/agendamento/index', 'AgendamentoController@index')->name('agendamento');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('home')->middleware('auth');
