@@ -8,6 +8,10 @@
 
 @section('content')
 
+@if ($cargo == '1')
+
+@endif
+
     <div class="row">
         <div class="col-md-12">
             <form action="{{ route('registrarAgendamento') }}" method="POST">

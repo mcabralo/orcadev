@@ -13,7 +13,12 @@ class AgendamentoController extends Controller
     public function index()
     {
         $idUsuario = Auth::user()->id;
-        dd(Auth::user());
+        // dd(Auth::user());
+
+        // $cargo = DB::table('users as u')
+        //     ->join('medicos as m', 'u.id', '=', 'm.medicoId')
+        //     ->where('u.id', Auth::user()->id)
+        //     ->get('tipo');
 
         // $agendamentos = DB::table('agendamentos')
         // ->where('medId' , $idUsuario)
@@ -26,6 +31,9 @@ class AgendamentoController extends Controller
 
         // dd($agendamentos);
 
+        // if ($cargo == 1) {
+        //     return view('agendamento.index', compact('agendamentos'));
+        // }
 
 
         // dd($request, $idUsuario);
@@ -41,12 +49,17 @@ class AgendamentoController extends Controller
             ->join('users AS u', 'm.medicoId', '=', 'u.id')
             ->get();
 
+        $cargo = DB::table('users as u')
+            ->join('medicos as m', 'u.id', '=', 'm.medicoId')
+            ->where('u.id', Auth::user()->id)
+            ->get('tipo');
+
         // $carbon = new Carbon(strtotime('now') + 60*60);
         // dd($carbon);
 
         // dd($medicos);
 
-        return view('agendamento.create', compact('medicos'/*, 'agendametos'*/));
+        return view('agendamento.create', compact('medicos', 'cargo'));
     }
 
     public function store(Request $request)
