@@ -57,7 +57,7 @@
 
         <!-- /.card-body -->
         <div class="card-footer">
-            *É recomendado a chegada com pelo menos 15min de antecedência. Horário sujeito a lotação.
+            Recomendamos a chegada com pelo menos 15 min de antecedência. Consulta sujeita a lotação.
         </div>
         <!-- /.card-footer -->
     </div>

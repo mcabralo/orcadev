@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendamentoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,11 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'AgendamentoController@index')->name('agendamento');
+Route::get('/home', 'AgendamentoController@index')->name('agendamento')->name('home');
+
+Route::get('/create', 'AgendamentoController@create')->name('fazerAgendamento');
+
+Route::post('/agendamento/create', 'AgendamentoController@Store')->name('registrarAgendamento');
 
 // Auth::routes();
 

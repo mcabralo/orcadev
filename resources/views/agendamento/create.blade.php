@@ -9,84 +9,50 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-6">
-
-          <div class="card card-danger">
-            <div class="card-header">
-              <h3 class="card-title">Input masks</h3>
-            </div>
-            <div class="card-body">
-              <!-- Date dd/mm/yyyy -->
-              <div class="form-group">
-                <label>Date masks:</label>
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                  </div>
-                  <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+        <div class="col-md-12">
+            <form action="{{ route('registrarAgendamento') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="exampleSelect1">Escolha o Médico</label>
+                    <select class="form-control" id="exampleSelect1" required autofocus name="medId">
+                        <option selected selected disabled>Selecione o médico</option>
+                        @foreach ($medicos as $medico)
+                            <option value="{{ $medico->id }}" >{{ $medico->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
-
-              <!-- Date mm/dd/yyyy -->
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                  </div>
-                  <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                <div class="row">
+                    <div class="form-group col-2">
+                        <label for="example-date-input">Data da Consulta</label>
+                        <input name="data" class="form-control" type="date" value="2021-01-08" id="example-date-input">
+                    </div>
+                    <div class="form-group col-2">
+                        <label for="example-date-input">Horário</label>
+                        {{-- @php
+                        $horaInicio = "1:00";
+                        @endphp --}}
+                        <input class="form-control" type="time" name="horaInicio" value="horaInicio"
+                            id="example-time-input">
+                    </div>
+                    {{-- <div hidden class="form-group col-2">
+                        <label for="example-date-input">Horário</label>
+                        <input class="form-control" type="time"
+                            value="@php $carbon = strtotime($horaInicio) + 60*60; @endphp" id="example-time-input">
+                    </div> --}}
                 </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
+                {{-- @php
+                $dataHora = strftime('%H:%M', $carbon);
+                @endphp --}}
 
-              <!-- phone mask -->
-              <div class="form-group">
-                <label>US phone mask:</label>
+                {{-- {{ dd($dataHora) }} --}}
 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
-                  <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
 
-              <!-- phone mask -->
-              <div class="form-group">
-                <label>Intl US phone mask:</label>
+                <button class=" btn btn-primary float-right ml-1" type="submit">Realizar Consulta</button>
+                <button class=" btn btn-secondary float-right ml-1" type="reset">Limpar Dados</button>
+            </form>
 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  </div>
-                  <input type="text" class="form-control"
-                         data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
-                </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
+        </div>
 
-              <!-- IP mask -->
-              <div class="form-group">
-                <label>IP mask:</label>
+    </div>
 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-laptop"></i></span>
-                  </div>
-                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
-                </div>
-                <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
-
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
 @stop
